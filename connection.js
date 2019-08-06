@@ -7,7 +7,7 @@ var connection;
 // } else {
   connection = mysql.createConnection({
     host: "localhost",
-    port: process.env.PORT || 3306,
+    port: process.env.port || 3306,
     user: "root",
     password: "password", // add your local password here.
     database: "notetaker_db" // add your db name here
