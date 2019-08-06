@@ -45,11 +45,23 @@ app.delete("/api/delete_note/:id", function(req, res){
 
     let queryString = `DELETE FROM notes WHERE id = ?`;
 
-    connection.query(queryString, [deleteNoteID],function(err, data){
+    connection.query(queryString, [deleteNoteID], function(err, data){
         if (err) throw err;
         console.log("your note has been deleted")
     })
 })
+
+// main page
+app.get("/", function(req, res){
+    res.sendFile(path.join(__dirname, "index.html"));
+})
+
+// note page
+app.get("/notes", function(req, res){
+    res.sendFile(path.join(__dirname, "notes.html"));
+})
+
+
 
 // LISTENER
 app.listen(PORT, function() {
