@@ -1,35 +1,79 @@
-#new{
+#new {
     float: right;
     font-size: 40px;
-    /* padding-top: 1%;
-    padding-bottom: 1%; */
     padding-right: 1%;
     color: #ffffff;
 }
 
-#title{
+#title {
     font-size: 35px;
     font-weight: bold;
     color: #ffffff;
 }
 
-div#main{
+div#main {
     text-align: center;
     margin-top: 10%;
 }
 
-div#main-text{
+div#main-text {
     background-color: #fffce4;
     padding: 3%;
     border-radius: 25px;
 }
 
-h1#main{
+h1#main {
     font-size: 65px;
 }
 
-h5#main{
-    margin-top: 3%;
+h5#main {
+    margin-top: 4%;
     margin-bottom: 5%;
     font-size: 23px;
+}
+
+div#all-notes {
+    margin: 0px;
+    padding: 0px;
+    border: 1px lightgrey;
+}
+
+#list-group {
+    border: 0px;
+}
+
+.card,
+.list-group,
+.list-container,
+.list-group-item:first-child .list-group-item-action {
+    border-top: none;
+    border-top-color: initial;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+}
+
+.card,
+.list-container {
+    height: calc(100vh - 70px);
+    border-bottom: none;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.bunny-note-title {
+    border: 0;
+    width: 100%;
+    height: 75px;
+    font-size: 45px;
+}
+
+.bunny-note-body {
+    width: 100%;
+    height: 75%;
+    border: 0;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
 }
