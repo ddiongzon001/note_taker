@@ -2,17 +2,17 @@ var mysql = require("mysql");
 
 var connection;
 
-if (process.env.JAWSDB_URL) {
-  connection = mysql.createConnection(process.env.JAWSDB_URL);
-} else {
+// if (process.env.JAWSDB_URL) {
+//   connection = mysql.createConnection(process.env.JAWSDB_URL);
+// } else {
   connection = mysql.createConnection({
     host: "localhost",
-    port: process.env.port || 3306,
+    port: process.env.PORT || 3306,
     user: "root",
     password: "password", // add your local password here.
     database: "notetaker_db" // add your db name here
   });
-}
+// }
 
 connection.config.typeCast = function(field, next) {
   if (field.type == "TINY" && field.length == 1) {
