@@ -1,0 +1,14 @@
+#new{
+    float: right;
+    font-size: 50px;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-right: 1%;
+    color: #fffce4;
+}
+
+#title{
+    font-size: 35px;
+    font-weight: bold;
+    color: #fffce4;
+}
