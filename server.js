@@ -38,6 +38,18 @@ app.post("/api/save_note", function(req, res){
 })
 
 // * Deleting a note from the database using `req.params.id`.
+app.delete("/api/delete_note/:id", function(req, res){
+    let deleteNoteID = req.params.id;
+
+    console.log(deleteNoteID);
+
+    let queryString = `DELETE FROM notes WHERE id = ?`;
+
+    connection.query(queryString, [deleteNoteID],function(err, data){
+        if (err) throw err;
+        console.log("your note has been deleted")
+    })
+})
 
 // LISTENER
 app.listen(PORT, function() {
