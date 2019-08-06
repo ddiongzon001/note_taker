@@ -56,7 +56,7 @@ app.delete("/api/delete_note/:id", function(req, res){
 // main page
 app.get("/", function(req, res){
     res.sendFile(path.join(__dirname, "index.html"));
-})
+}) 
 
 // note page
 app.get("/notes", function(req, res){
