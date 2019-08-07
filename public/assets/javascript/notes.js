@@ -23,6 +23,7 @@ function displayNotes() {
 $("#new").on("click", function (event) {
     event.preventDefault();
 
+    // creating the note from the front-end form
     let newNote = {
         title: $(".bunny-note-title").val().trim(),
         body: $(".bunny-note-body").val().trim()
@@ -32,6 +33,7 @@ $("#new").on("click", function (event) {
     $(".bunny-note-title").val("");
     $(".bunny-note-body").val("");
 
+    // going through the post api to log the new note into it
     $.post("/api/save_note", newNote, function (data) {
         console.log(data);
     })
@@ -40,13 +42,12 @@ $("#new").on("click", function (event) {
 })
 
 // displaying note on the main section
-$(".noteList").on("click", function (event) {
+$(document).on("click", ".noteList", function (event) {
     event.preventDefault();
-    console.log("this was clicked");
+
     let currentTitle = $(this).attr('data-title');
     let currentBody = $(this).attr('data-body');
-    console.log(currentTitle);
-    console.log(currentBody);
+
     $(".bunny-note-title").val(currentTitle);
     $(".bunny-note-body").val(currentBody);
 
