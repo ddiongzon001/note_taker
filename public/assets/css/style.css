@@ -47,6 +47,11 @@ div#all-notes {
     border: 0px;
 }
 
+.fa-ban{
+    color: crimson;
+    float: right;
+}
+
 .card,
 .list-group,
 .list-container,

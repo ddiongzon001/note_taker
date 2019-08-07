@@ -7,13 +7,17 @@ function displayNotes() {
         console.log(notesData);
 
         for (var i = 0; i < notesData.length; i++) {
-            var noteDisplay = $("<a>");
+            let noteDiv = $("<div>");
+            let noteDisplay = $("<li>");
             noteDisplay.addClass('list-group-item list-group-item-action noteList');
             noteDisplay.attr("data-id", notesData[i].id);
             noteDisplay.attr("data-title", notesData[i].title);
             noteDisplay.attr("data-body", notesData[i].body);
-            noteDisplay.text(notesData[i].title);
-            $(".list-group").prepend(noteDisplay);
+            noteDisplay.html(`${notesData[i].title} <i class="fas fa-ban"></i>`);
+            // let deleteButton = $("<p>");
+            // deleteButton.html(`<i class="fas fa-ban"></i>`);
+            noteDiv.append(noteDisplay);
+            $(".list-group").prepend(noteDiv);
         }
     })
 
