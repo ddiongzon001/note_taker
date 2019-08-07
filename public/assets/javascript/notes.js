@@ -2,21 +2,36 @@
 function displayNotes() {
 
     $(".list-group").empty();
+
     // call to get the data
     $.get("/api/see_notes", function (notesData) {
         console.log(notesData);
 
+        // for each note, creates the div, list and delete button
         for (var i = 0; i < notesData.length; i++) {
+            // create the divs & the list group
             let noteDiv = $("<div>");
             let noteDisplay = $("<li>");
+            let deleteDisplay = $("<i>");
+
+            // adds the class from bootstrap & font awesome
             noteDisplay.addClass('list-group-item list-group-item-action noteList');
+            deleteDisplay.addClass('fas fa-poop delete');
+           
+            // saves the id, title, and body to the following attributes
             noteDisplay.attr("data-id", notesData[i].id);
             noteDisplay.attr("data-title", notesData[i].title);
             noteDisplay.attr("data-body", notesData[i].body);
-            noteDisplay.html(`${notesData[i].title} <i class="fas fa-ban"></i>`);
-            // let deleteButton = $("<p>");
-            // deleteButton.html(`<i class="fas fa-ban"></i>`);
+            deleteDisplay.attr("data-id", notesData[i].id);
+
+            // shows whats on each <li>
+            noteDisplay.html(`<p class="noteText">${notesData[i].title}</p>`);
+            noteDisplay.append(deleteDisplay);
+
+            // appends to the div we created
             noteDiv.append(noteDisplay);
+
+            // appends to the div on the page
             $(".list-group").prepend(noteDiv);
         }
     })
@@ -46,7 +61,7 @@ $("#new").on("click", function (event) {
 })
 
 // displaying note on the main section
-$(document).on("click", ".noteList", function (event) {
+$(document).on("click", ".noteText", function (event) {
     event.preventDefault();
 
     let currentTitle = $(this).attr('data-title');
@@ -55,6 +70,22 @@ $(document).on("click", ".noteList", function (event) {
     $(".bunny-note-title").val(currentTitle);
     $(".bunny-note-body").val(currentBody);
 
+})
+
+// deleting the notes
+$(document).on("click", ".delete", function (event) {
+    event.preventDefault();
+
+    let currentID = $(this).attr('data-id');
+
+    $.ajax({
+        url: `/api/delete_note/${currentID}`,
+        method: `DELETE`
+    }).then(function(response){
+        console.log(response);
+    });
+
+    location.reload();
 })
 
 displayNotes();
