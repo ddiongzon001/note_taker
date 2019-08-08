@@ -53,8 +53,34 @@ $("#new").on("click", function (event) {
 
 })
 
+// when the user clicks out of typing a title
+$("input").blur(function(){
+    // creates the save button so they can save their note
+    let saveButton = $("<i>");
+    saveButton.addClass("fas fa-paw save");
+    $(".col-sm-2").prepend(saveButton);
+  });
+
 // editing note to the database
-$(".save").on("click", function (event) {
+$(document).on("click", ".save", function (event) {
+    event.preventDefault();
+
+    //stores the title and the body into these variables
+    let newNote = {
+        title: $(".bunny-note-title").val().trim(),
+        body: $(".bunny-note-body").val().trim()
+    }
+
+    //clear the input lines so they can input the new note
+    $(".bunny-note-title").val("");
+    $(".bunny-note-body").val("");
+
+    // going through the post api to log the new note into it
+    $.post("/api/save_note", newNote, function (data) {
+        console.log(data);
+    })
+    location.reload();
+    $(".save").remove();
 
 })
 
@@ -88,12 +114,5 @@ $(document).on("click", ".delete", function (event) {
     location.reload();
 })
 
-
-
+// initial display of notes
 displayNotes();
-
-$("input").blur(function(){
-    let saveButton = $("<i>");
-    saveButton.addClass("fas fa-paw save");
-    $(".col-sm-2").prepend(saveButton);
-  });
