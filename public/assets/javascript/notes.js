@@ -49,10 +49,12 @@ $("#new").on("click", function (event) {
     $(".bunny-note-title").val("");
     $(".bunny-note-body").val("");
 
+    $(".save").remove();
+
 })
 
 // editing note to the database
-$("#save").on("click", function (event) {
+$(".save").on("click", function (event) {
 
 })
 
@@ -90,7 +92,8 @@ $(document).on("click", ".delete", function (event) {
 
 displayNotes();
 
-$("input").keyup(function(){
+$("input").blur(function(){
     let saveButton = $("<i>");
-    $(".col-sm-2").prepend();
+    saveButton.addClass("fas fa-paw save");
+    $(".col-sm-2").prepend(saveButton);
   });
