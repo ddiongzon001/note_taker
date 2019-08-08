@@ -12,23 +12,26 @@ function displayNotes() {
             // create the divs & the list group
             let noteDiv = $("<div>");
             let noteDisplay = $("<li>");
+            let noteText = $("<p>")
             let deleteDisplay = $("<i>");
 
             // adds the class from bootstrap & font awesome
-            noteDisplay.addClass('list-group-item list-group-item-action noteList');
+            noteDisplay.addClass('list-group-item list-group-item-action');
+            noteText.addClass(`noteList`);
             deleteDisplay.addClass('fas fa-poop delete');
            
             // saves the id, title, and body to the following attributes
-            noteDisplay.attr("data-id", notesData[i].id);
-            noteDisplay.attr("data-title", notesData[i].title);
-            noteDisplay.attr("data-body", notesData[i].body);
+            noteText.attr("data-id", notesData[i].id);
+            noteText.attr("data-title", notesData[i].title);
+            noteText.attr("data-body", notesData[i].body);
             deleteDisplay.attr("data-id", notesData[i].id);
 
             // shows whats on each <li>
-            noteDisplay.html(`<p class="noteText">${notesData[i].title}</p>`);
+            noteText.text(`${notesData[i].title}`);
+            noteDisplay.html(noteText);
             noteDisplay.append(deleteDisplay);
 
-            // appends to the div we created
+            // appends to the div we createdgi
             noteDiv.append(noteDisplay);
 
             // appends to the div on the page
@@ -61,12 +64,14 @@ $("#new").on("click", function (event) {
 })
 
 // displaying note on the main section
-$(document).on("click", ".noteText", function (event) {
+$(document).on("click", ".noteList", function (event) {
     event.preventDefault();
 
+    // take the title and the body from the note
     let currentTitle = $(this).attr('data-title');
     let currentBody = $(this).attr('data-body');
 
+    // display it to the main note section
     $(".bunny-note-title").val(currentTitle);
     $(".bunny-note-body").val(currentBody);
 
@@ -89,3 +94,4 @@ $(document).on("click", ".delete", function (event) {
 })
 
 displayNotes();
+
