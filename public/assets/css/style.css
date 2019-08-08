@@ -112,7 +112,11 @@ textarea, li {
 }
 
 input{
-    margin-top: 5%;
+    margin-top: 1%;
+}
+
+input, textarea{
+    padding: 1%;
 }
 
 #new-note {
