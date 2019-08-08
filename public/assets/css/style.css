@@ -1,5 +1,5 @@
-p{
-    padding-right: 50%;
+.noteList {
+    padding: 0;
     display: inline;
 }
 
@@ -10,12 +10,13 @@ p{
     color: #ffffff;
 }
 
-#new:hover, .save:hover {
+#new:hover,
+.save:hover {
     cursor: pointer;
-    color:#9c6a1e;
+    color: #9c6a1e;
 }
 
-.save{
+.save {
     float: right;
     font-size: 40px;
     padding-left: 10%;
@@ -59,13 +60,13 @@ div#all-notes {
     border: 0px;
 }
 
-.fa-poop{
+.fa-poop {
     color: crimson;
     float: right;
     font-size: 25px;
 }
 
-.fa-poop:hover{
+.fa-poop:hover {
     color: darkred;
 }
 
@@ -103,4 +104,29 @@ div#all-notes {
 input:focus,
 textarea:focus {
     outline: none;
+}
+
+input,
+textarea, li {
+    opacity: 0.8;
+}
+
+input{
+    margin-top: 5%;
+}
+
+#new-note {
+    background: url(../images/newNote_background.PNG);
+    background-size: cover;
+    background-position: center;
+}
+
+.card {
+    background: url(../images/notes_background.jpg);
+    background-repeat: repeat;
+}
+
+#index{
+    background: url(../images/notes_background.jpg);
+    background-repeat: repeat;
 }
