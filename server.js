@@ -20,7 +20,9 @@ app.use(express.static("public"));
 app.get("/api/see_notes", function(req, res){
     let queryString = `SELECT * FROM notes`;
     connection.query(queryString, function(err, data){
-        if (err) throw err;
+        if (err) {
+            return res.status(500).end();
+        };
         res.json(data);
     })
 });
@@ -48,7 +50,9 @@ app.delete("/api/delete_note/:id", function(req, res){
     let queryString = `DELETE FROM notes WHERE id = ?`;
 
     connection.query(queryString, [deleteNoteID], function(err, data){
-        if (err) throw err;
+        if (err){
+            return res.status(500).end();
+        };
         console.log("your note has been deleted")
     })
 })
@@ -64,7 +68,9 @@ app.put("/api/update_note/:id", function(req, res){
     let queryString = `UPDATE notes SET title = ?, body = ? WHERE id = ?`;
 
     connection.query(queryString, [updatedNoteTitle, updatedNoteBody, updatedNoteID], function(err, data){
-        if (err) throw err;
+        if (err){
+            return res.status(500).end();
+        };
         console.log("your note has been updated")
     })
 })
