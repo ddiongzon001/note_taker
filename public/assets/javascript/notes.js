@@ -49,36 +49,50 @@ $("#new").on("click", function (event) {
     $(".bunny-note-title").val("");
     $(".bunny-note-body").val("");
 
+    // set input id as new
+    $(".bunny-note-title").attr("data-id", "new");
+
     $(".save").remove();
 
 })
 
 // when the user clicks out of typing a title
-$("input").blur(function(){
+$("input").blur(function () {
     // creates the save button so they can save their note
     let saveButton = $("<i>");
     saveButton.addClass("fas fa-paw save");
+    saveButton.attr("title", "Save Note");
     $(".col-sm-2").prepend(saveButton);
-  });
+});
 
 // editing note to the database
 $(document).on("click", ".save", function (event) {
     event.preventDefault();
 
-    //stores the title and the body into these variables
-    let newNote = {
-        title: $(".bunny-note-title").val().trim(),
-        body: $(".bunny-note-body").val().trim()
+    // store the id of the input
+    let currentID = $(".bunny-note-title");
+
+    // if the currentID is new, then run the post api
+    if (currentID === "new") { 
+        //stores the title and the body into these variables
+        let newNote = {
+            title: $(".bunny-note-title").val().trim(),
+            body: $(".bunny-note-body").val().trim()
+        }
+
+        //clear the input lines so they can input the new note
+        $(".bunny-note-title").val("");
+        $(".bunny-note-body").val("");
+
+        // going through the post api to log the new note into it
+        $.post("/api/save_note", newNote, function (data) {
+            console.log(data);
+        })
+    } 
+    // if the currentID is not new, then run the update api
+    else {
+
     }
-
-    //clear the input lines so they can input the new note
-    $(".bunny-note-title").val("");
-    $(".bunny-note-body").val("");
-
-    // going through the post api to log the new note into it
-    $.post("/api/save_note", newNote, function (data) {
-        console.log(data);
-    })
     location.reload();
     $(".save").remove();
 
@@ -91,10 +105,14 @@ $(document).on("click", ".noteList", function (event) {
     // take the title and the body from the note
     let currentTitle = $(this).attr('data-title');
     let currentBody = $(this).attr('data-body');
+    let currentID = $(this).attr('data-id');
 
     // display it to the main note section
     $(".bunny-note-title").val(currentTitle);
     $(".bunny-note-body").val(currentBody);
+
+    // store the ID to the input
+    $(".bunny-note-title").attr("data-id", currentID);
 
 })
 

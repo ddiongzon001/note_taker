@@ -10,7 +10,7 @@ p{
     color: #ffffff;
 }
 
-#new:hover {
+#new:hover, .save:hover {
     cursor: pointer;
     color:#9c6a1e;
 }
@@ -19,7 +19,6 @@ p{
     float: right;
     font-size: 40px;
     padding-left: 10%;
-    /* padding-right: 1%; */
     color: #ffffff;
 }
 

@@ -53,6 +53,22 @@ app.delete("/api/delete_note/:id", function(req, res){
     })
 })
 
+// updating a note from the database
+app.put("/api/update_note/:id", function(req, res){
+    let updatedNoteID = req.params.id;
+    let updatedNoteTitle = req.body.title;
+    let updatedNoteBody = req.body.body;
+
+    console.log(updatedNoteID);
+
+    let queryString = `UPDATE notes SET title = ?, body = ? WHERE id = ?`;
+
+    connection.query(queryString, [updatedNoteTitle, updatedNoteBody, updatedNoteID], function(err, data){
+        if (err) throw err;
+        console.log("your note has been updated")
+    })
+})
+
 // main page
 app.get("/", function(req, res){
     res.sendFile(path.join(__dirname, "index.html"));
