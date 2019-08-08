@@ -25,6 +25,7 @@ function displayNotes() {
             noteText.attr("data-title", notesData[i].title);
             noteText.attr("data-body", notesData[i].body);
             deleteDisplay.attr("data-id", notesData[i].id);
+            deleteDisplay.attr("title", "Delete Note")
 
             // shows whats on each <li>
             noteText.text(`${notesData[i].title}`);
@@ -70,27 +71,36 @@ $(document).on("click", ".save", function (event) {
     event.preventDefault();
 
     // store the id of the input
-    let currentID = $(".bunny-note-title");
+    let currentID = $('.bunny-note-title').attr('data-id');
+
+    //stores the title and the body into these variables
+    let newNote = {
+        title: $(".bunny-note-title").val().trim(),
+        body: $(".bunny-note-body").val().trim()
+    }
+
+    //clear the input lines so they can input the new note
+    $(".bunny-note-title").val("");
+    $(".bunny-note-body").val("");
 
     // if the currentID is new, then run the post api
-    if (currentID === "new") { 
-        //stores the title and the body into these variables
-        let newNote = {
-            title: $(".bunny-note-title").val().trim(),
-            body: $(".bunny-note-body").val().trim()
-        }
-
-        //clear the input lines so they can input the new note
-        $(".bunny-note-title").val("");
-        $(".bunny-note-body").val("");
+    if (currentID === "new") {
 
         // going through the post api to log the new note into it
         $.post("/api/save_note", newNote, function (data) {
             console.log(data);
         })
-    } 
+    }
     // if the currentID is not new, then run the update api
     else {
+
+        $.ajax({
+            url: `/api/update_note/${currentID}`,
+            type: `PUT`,
+            data: newNote
+        }).then(function(response){
+            // console.log(response)
+        })
 
     }
     location.reload();
