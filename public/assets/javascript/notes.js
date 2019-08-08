@@ -19,7 +19,7 @@ function displayNotes() {
             noteDisplay.addClass('list-group-item list-group-item-action');
             noteText.addClass(`noteList`);
             deleteDisplay.addClass('fas fa-poop delete');
-           
+
             // saves the id, title, and body to the following attributes
             noteText.attr("data-id", notesData[i].id);
             noteText.attr("data-title", notesData[i].title);
@@ -41,26 +41,19 @@ function displayNotes() {
 
 }
 
-// saving a note to the database
+// creating a NEW note to the database
 $("#new").on("click", function (event) {
     event.preventDefault();
 
-    // creating the note from the front-end form
-    let newNote = {
-        title: $(".bunny-note-title").val().trim(),
-        body: $(".bunny-note-body").val().trim()
-    }
-
-    //clear the input lines
+    //clear the input lines so they can input the new note
     $(".bunny-note-title").val("");
     $(".bunny-note-body").val("");
 
-    // going through the post api to log the new note into it
-    $.post("/api/save_note", newNote, function (data) {
-        console.log(data);
-    })
+})
 
-    location.reload();
+// editing note to the database
+$("#save").on("click", function (event) {
+
 })
 
 // displaying note on the main section
@@ -86,12 +79,18 @@ $(document).on("click", ".delete", function (event) {
     $.ajax({
         url: `/api/delete_note/${currentID}`,
         method: `DELETE`
-    }).then(function(response){
+    }).then(function (response) {
         console.log(response);
     });
 
     location.reload();
 })
 
+
+
 displayNotes();
 
+$("input").keyup(function(){
+    let saveButton = $("<i>");
+    $(".col-sm-2").prepend();
+  });
