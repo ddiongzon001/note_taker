@@ -3,6 +3,10 @@
     display: inline;
 }
 
+.header{
+    display: inline;
+}
+
 #new {
     float: right;
     font-size: 40px;
@@ -31,7 +35,7 @@
 
 div#main {
     text-align: center;
-    margin-top: 10%;
+    margin-top: 5%;
 }
 
 div#main-text {
@@ -60,13 +64,13 @@ div#all-notes {
     border: 0px;
 }
 
-.fa-poop {
+.delete {
     color: crimson;
     float: right;
     font-size: 25px;
 }
 
-.fa-poop:hover {
+.delete:hover {
     color: darkred;
 }
 
